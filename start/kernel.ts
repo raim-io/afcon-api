@@ -35,7 +35,11 @@ Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 |
 | and then use it as follows
 |
-| Route.get('dashboard', 'UserController.dashboard').middleware('auth')
+| Route..get('dashboard', 'UserController.dashboard').middleware('auth')
+|
+|NB: the above route definition should only have 1 dot(`.`) not 2
 |
 */
-Server.middleware.registerNamed({})
+Server.middleware.registerNamed({
+  findContact: () => import('App/Middleware/FindGroup'),
+})

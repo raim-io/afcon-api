@@ -26,32 +26,28 @@ export default class GroupsController {
    * fetching a single group with all matches played in the group
    * and the result of the matches
    */
-  public async show({ response, params }: HttpContextContract) {
-    const requestedGroup = await Group.findOrFail(params.id)
-
+  public async show({ response, requestedGroup }: HttpContextContract) {
     return response.ok({ data: requestedGroup })
   }
 
   /**
    * updating a single group
    */
-  public async update({ request, response, params }: HttpContextContract) {
+  public async update({ request, response, requestedGroup }: HttpContextContract) {
     const payload = await request.validate(GroupValidator)
-    const requestedGroup = await Group.findOrFail(params.id)
 
     requestedGroup?.merge({ ...payload })
     await requestedGroup?.save()
 
-    return response.created({ message: 'Group was updated.', data: requestedGroup })
+    return response.created({ message: 'Group was updated', data: requestedGroup })
   }
 
   /**
    * deleting a single group
    */
-  public async destroy({ response, params }: HttpContextContract) {
-    const requestedGroup = await Group.findOrFail(params.id)
+  public async destroy({ response, requestedGroup }: HttpContextContract) {
     await requestedGroup?.delete()
 
-    return response.created({ message: 'Group was deleted.', data: requestedGroup?.id })
+    return response.created({ message: 'Group was deleted', data: requestedGroup?.id })
   }
 }

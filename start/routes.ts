@@ -15,4 +15,10 @@ Route.get('/health', async ({ response }) => {
  * group routes
  */
 
-Route.resource('groups', 'GroupsController').apiOnly()
+Route.resource('groups', 'GroupsController')
+  .apiOnly()
+  .middleware({
+    update: ['findGroup'],
+    show: ['findGroup'],
+    destroy: ['findGroup'],
+  })
