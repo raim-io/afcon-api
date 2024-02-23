@@ -41,5 +41,5 @@ Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 |
 */
 Server.middleware.registerNamed({
-  findContact: () => import('App/Middleware/FindGroup'),
+  FindGroup: () => import('App/Middleware/FindGroup'),
 })

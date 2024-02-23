@@ -31,7 +31,7 @@ export default class GroupValidator {
     name: schema.string([
       rules.escape(),
       rules.trim(),
-      rules.maxLength(10),
+      rules.maxLength(50),
       rules.unique({
         table: 'groups',
         column: 'name',

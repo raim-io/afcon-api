@@ -8,9 +8,13 @@ export default class FindGroup {
     const { response, params } = ctx
     const { id } = params
 
-    let group
+    if (!id) {
+      return response.badRequest({ mesage: 'Group ID not povided' })
+    }
+
+    let group: Group
     try {
-      group = Group.findOrFail(id)
+      group = await Group.findOrFail(id)
     } catch (error) {
       return response.notFound({ message: 'Group not found' })
     }
