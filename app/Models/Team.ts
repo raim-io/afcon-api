@@ -12,7 +12,7 @@ export default class Team extends BaseModel {
   public name: string
 
   @column()
-  public alias: string
+  public alias: string | null
 
   @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
   public createdAt: DateTime
