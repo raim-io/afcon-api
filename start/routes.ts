@@ -22,3 +22,8 @@ Route.resource('groups', 'GroupsController')
     show: ['FindGroup'],
     destroy: ['FindGroup'],
   })
+
+/**
+ * team routes
+ */
+Route.resource('teams', 'TeamsController').apiOnly()

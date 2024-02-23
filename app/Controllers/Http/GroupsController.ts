@@ -14,7 +14,7 @@ export default class GroupsController {
   }
 
   /**
-   * listing all groups
+   * fetching all groups
    */
   public async index({ response }: HttpContextContract) {
     const groups = await Group.query().select(['id', 'name']).orderBy('name', 'asc')
