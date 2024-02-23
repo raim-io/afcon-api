@@ -1,12 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Team from 'App/Models/Team'
+import TeamValidator from 'App/Validators/TeamValidator'
 
 export default class TeamsController {
   /**
    * creating a team
    */
   public async store({ request, response }: HttpContextContract) {
-    const payload = request.body()
+    const payload = await request.validate(TeamValidator)
     const group = await Team.create({ ...payload })
 
     return response.created({ messsage: 'Team was created', data: group })
