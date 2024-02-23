@@ -25,33 +25,28 @@ export default class TeamsController {
   /**
    * fetch a single team
    */
-  public async show({ params, response }: HttpContextContract) {
-    const teamId = await params.id
-    const team = await Team.findOrFail(teamId)
-
-    return response.ok({ data: team })
+  public async show({ requestedTeam, response }: HttpContextContract) {
+    return response.ok({ data: requestedTeam })
   }
 
   /**
    * update a team
    */
-  public async update({ request, response, params }: HttpContextContract) {
-    const payload = request.body()
-    const team = await Team.findOrFail(params.id)
+  public async update({ requestedTeam, request, response }: HttpContextContract) {
+    const payload = await request.validate(TeamValidator)
 
-    team?.merge({ ...payload })
-    await team.save()
+    requestedTeam?.merge({ ...payload })
+    await requestedTeam?.save()
 
-    return response.created({ message: 'Team was updated', data: team })
+    return response.created({ message: 'Team was updated', data: requestedTeam })
   }
 
   /**
    * delete a team
    */
-  public async destroy({ params, response }: HttpContextContract) {
-    const team = await Team.findOrFail(params.id)
-    await team?.delete()
+  public async destroy({ requestedTeam, response }: HttpContextContract) {
+    await requestedTeam?.delete()
 
-    return response.created({ message: 'Team was deleted', data: team.id })
+    return response.created({ message: 'Team was deleted', data: requestedTeam?.id })
   }
 }

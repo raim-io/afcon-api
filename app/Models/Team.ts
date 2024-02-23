@@ -17,7 +17,7 @@ export default class Team extends BaseModel {
   @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'createdAs' })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'UpdatedAt' })
   public updatedAt: DateTime
 
   @beforeCreate()
