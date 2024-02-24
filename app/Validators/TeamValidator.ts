@@ -12,14 +12,14 @@ export default class TeamValidator {
     name: schema.string([
       rules.escape(),
       rules.trim(),
-      rules.maxLength(30),
+      rules.maxLength(50),
       rules.unique({
         table: 'teams',
         column: 'name',
         whereNot: this.refs?.id ? { id: this.refs.id } : {},
       }),
     ]),
-    alias: schema.string.optional([rules.escape(), rules.trim(), rules.maxLength(50)]),
+    alias: schema.string.optional([rules.escape(), rules.trim(), rules.maxLength(60)]),
   })
 
   public messages: CustomMessages = {

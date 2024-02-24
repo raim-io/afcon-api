@@ -10,11 +10,11 @@ export default class TeamsController {
     const payload = await request.validate(TeamValidator)
     const group = await Team.create({ ...payload })
 
-    return response.created({ messsage: 'Team was created', data: group })
+    return response.created({ message: 'Team was created', data: group })
   }
 
   /**
-   * fetching all teams
+   * fetching all teams (paginated)
    */
   public async index({ response }: HttpContextContract) {
     const teams = await Team.query().select(['id', 'name', 'alias']).orderBy('name', 'asc')
