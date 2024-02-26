@@ -3,7 +3,7 @@ import { BaseModel, beforeCreate, column } from '@ioc:Adonis/Lucid/Orm'
 import { cuid } from '@ioc:Adonis/Core/Helpers'
 
 export default class Team extends BaseModel {
-  public static selfAssignPrimayKey = true
+  public static selfAssignPrimaryKey = true
 
   @column({ isPrimary: true })
   public id: string

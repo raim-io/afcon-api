@@ -12,7 +12,10 @@ test.group('Teams destroy', (group) => {
   test('should delete a team via the team`s ID', async ({ client, route, assert }) => {
     const existingTeam = await TeamFactory.query().create()
     const response = await client.delete(route('TeamsController.destroy', { id: existingTeam.id }))
+    // console.log(response)
+    console.log(existingTeam)
 
+    response.dumpBody()
     response.assertStatus(201)
     response.assertBodyContains({
       message: 'Team was deleted',
